@@ -12,7 +12,10 @@
 
       <ul>
         <transition-group name="list" enter-active-class="animated bounceInUp" leave-active-class="animated bounceOutDown">
-          <li v-for="(data, index) in skills" :key="index">{{ data.skill }}</li>
+          <li v-for="(data, index) in skills" :key="index">{{ data.skill }}
+            <i class="fa fa-minus-circle" v-on:click="remove(index)"></i>
+          </li>
+          
         </transition-group>
       </ul>
 
@@ -27,7 +30,8 @@ export default {
   data() {
     return {
       skill: "",
-      skills: [{ skill: "Vue.js" }, { skill: "Frontend Developer" }]
+      skills: [
+        { 'skill': "Vue.js" }, { 'skill': "Frontend Developer" }]
     };
   },
   methods: {
@@ -40,6 +44,9 @@ export default {
           console.log('Not valid');
         }
       })
+    },
+    remove(id) {
+      this.skills.splice(id, 1);
     }
   }
 };
@@ -48,6 +55,7 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 @import "https://cdn.jsdelivr.net/npm/animate.css@3.5.1";
+@import "https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css";
   .holder {
     background: #fff;
   }
